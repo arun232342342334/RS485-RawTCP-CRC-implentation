@@ -1,0 +1,719 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V17" />
+  <DocumentInfo>
+    <Created>2026-07-06T15:32:59.266637Z</Created>
+    <ExportSetting>WithDefaults</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>TIA Portal Openness</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Version Control Interface</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC Professional</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <SW.Blocks.OB ID="0">
+    <AttributeList>
+      <AutoNumber>true</AutoNumber>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="Initial_Call" Datatype="Bool" Accessibility="Public" Informative="true">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Initial call of this OB</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="Remanence" Datatype="Bool" Accessibility="Public" Informative="true">
+      <Comment>
+        <MultiLanguageText Lang="en-US">=True, if remanent data are available</MultiLanguageText>
+      </Comment>
+    </Member>
+  </Section>
+  <Section Name="Temp" />
+  <Section Name="Constant" />
+</Sections></Interface>
+      <IsIECCheckEnabled>false</IsIECCheckEnabled>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Main</Name>
+      <Number>1</Number>
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+      <SecondaryType>ProgramCycle</SecondaryType>
+      <SetENOAutomatically>false</SetENOAutomatically>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="3" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="Kinco_connect_req" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="22">
+      <Symbol>
+        <Component Name="kinco_Data_packet_DB" />
+        <Component Name="Kinco_Data_Recv" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="Connection_Established" />
+      </Symbol>
+    </Access>
+    <Call UId="24">
+      <CallInfo Name="Canet_com" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="25">
+          <Component Name="Canet_comm_DB" />
+        </Instance>
+        <Parameter Name="con_req" Section="Input" Type="Bool" />
+        <Parameter Name="connection_established" Section="Output" Type="Bool" />
+        <Parameter Name="Data_rcvd" Section="InOut" Type="Array[0..12] of Byte" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="26">
+      <Powerrail />
+      <NameCon UId="24" Name="en" />
+    </Wire>
+    <Wire UId="27">
+      <IdentCon UId="21" />
+      <NameCon UId="24" Name="con_req" />
+    </Wire>
+    <Wire UId="28">
+      <IdentCon UId="22" />
+      <NameCon UId="24" Name="Data_rcvd" />
+    </Wire>
+    <Wire UId="29">
+      <NameCon UId="24" Name="connection_established" />
+      <IdentCon UId="23" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="4" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="5" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="6" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="8" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="send_data_pulse" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="22">
+      <Symbol>
+        <Component Name="move_data_pulse" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="wake_node_trigger" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="Motor_1_Select_mode" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="motor_1_control_word" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="26">
+      <Symbol>
+        <Component Name="motor_1_target_rpm" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="27">
+      <Symbol>
+        <Component Name="motor_1_target_pos" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="28">
+      <Symbol>
+        <Component Name="motor_1_profile_speed" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="29">
+      <Constant>
+        <ConstantType>Int</ConstantType>
+        <ConstantValue>6</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="30">
+      <Symbol>
+        <Component Name="Connection_Established" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="31">
+      <Symbol>
+        <Component Name="kinco_Data_packet_DB" />
+        <Component Name="Kinco_Data_Recv" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="32">
+      <Symbol>
+        <Component Name="kinco_Data_packet_DB" />
+        <Component Name="Kinco_Data_sending_vizu" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="33" />
+    <Part Name="Contact" UId="34" />
+    <Call UId="35">
+      <CallInfo Name="Kinco_CAN_Data" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="36">
+          <Component Name="left_motor_DB" />
+        </Instance>
+        <Parameter Name="Wake_node_trig" Section="Input" Type="Bool" />
+        <Parameter Name="Op_mode_in" Section="Input" Type="Byte" />
+        <Parameter Name="Control_word" Section="Input" Type="Word" />
+        <Parameter Name="Target_RPM" Section="Input" Type="DInt" />
+        <Parameter Name="Target_pos" Section="Input" Type="DInt" />
+        <Parameter Name="profile_speed" Section="Input" Type="DInt" />
+        <Parameter Name="Node_ID" Section="Input" Type="Int" />
+        <Parameter Name="connection_established" Section="Input" Type="Bool" />
+        <Parameter Name="send_pulse" Section="Input" Type="Bool" />
+        <Parameter Name="move_pulse" Section="Input" Type="Bool" />
+        <Parameter Name="Data_Recv" Section="Input" Type="Array[0..12] of Byte" />
+        <Parameter Name="speed_real" Section="Output" Type="DInt" />
+        <Parameter Name="pos_act" Section="Output" Type="DInt" />
+        <Parameter Name="current" Section="Output" Type="Real" />
+        <Parameter Name="status_word" Section="Output" Type="Word" />
+        <Parameter Name="error_state" Section="Output" Type="Word" />
+        <Parameter Name="Op_mode" Section="Output" Type="Byte" />
+        <Parameter Name="Intial_state" Section="Output" Type="Bool" />
+        <Parameter Name="Pre_operational_state" Section="Output" Type="Bool" />
+        <Parameter Name="Operation_state" Section="Output" Type="Bool" />
+        <Parameter Name="Stop_state" Section="Output" Type="Bool" />
+        <Parameter Name="Data_to_be_sent" Section="InOut" Type="Array[0..12] of Byte" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="47">
+      <Powerrail />
+      <NameCon UId="35" Name="en" />
+      <NameCon UId="33" Name="in" />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="48">
+      <IdentCon UId="21" />
+      <NameCon UId="33" Name="operand" />
+    </Wire>
+    <Wire UId="49">
+      <NameCon UId="33" Name="out" />
+      <NameCon UId="35" Name="send_pulse" />
+    </Wire>
+    <Wire UId="50">
+      <IdentCon UId="22" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+    <Wire UId="51">
+      <NameCon UId="34" Name="out" />
+      <NameCon UId="35" Name="move_pulse" />
+    </Wire>
+    <Wire UId="52">
+      <IdentCon UId="23" />
+      <NameCon UId="35" Name="Wake_node_trig" />
+    </Wire>
+    <Wire UId="53">
+      <IdentCon UId="24" />
+      <NameCon UId="35" Name="Op_mode_in" />
+    </Wire>
+    <Wire UId="54">
+      <IdentCon UId="25" />
+      <NameCon UId="35" Name="Control_word" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="26" />
+      <NameCon UId="35" Name="Target_RPM" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="27" />
+      <NameCon UId="35" Name="Target_pos" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="28" />
+      <NameCon UId="35" Name="profile_speed" />
+    </Wire>
+    <Wire UId="58">
+      <IdentCon UId="29" />
+      <NameCon UId="35" Name="Node_ID" />
+    </Wire>
+    <Wire UId="59">
+      <IdentCon UId="30" />
+      <NameCon UId="35" Name="connection_established" />
+    </Wire>
+    <Wire UId="60">
+      <IdentCon UId="31" />
+      <NameCon UId="35" Name="Data_Recv" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="32" />
+      <NameCon UId="35" Name="Data_to_be_sent" />
+    </Wire>
+    <Wire UId="62">
+      <NameCon UId="35" Name="speed_real" />
+      <OpenCon UId="37" />
+    </Wire>
+    <Wire UId="63">
+      <NameCon UId="35" Name="pos_act" />
+      <OpenCon UId="38" />
+    </Wire>
+    <Wire UId="64">
+      <NameCon UId="35" Name="current" />
+      <OpenCon UId="39" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="35" Name="status_word" />
+      <OpenCon UId="40" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="35" Name="error_state" />
+      <OpenCon UId="41" />
+    </Wire>
+    <Wire UId="67">
+      <NameCon UId="35" Name="Op_mode" />
+      <OpenCon UId="42" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="35" Name="Intial_state" />
+      <OpenCon UId="43" />
+    </Wire>
+    <Wire UId="69">
+      <NameCon UId="35" Name="Pre_operational_state" />
+      <OpenCon UId="44" />
+    </Wire>
+    <Wire UId="70">
+      <NameCon UId="35" Name="Operation_state" />
+      <OpenCon UId="45" />
+    </Wire>
+    <Wire UId="71">
+      <NameCon UId="35" Name="Stop_state" />
+      <OpenCon UId="46" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="9" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="B" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="D" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="send_data_pulse" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="22">
+      <Symbol>
+        <Component Name="move_data_pulse" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="wake_node_trigger" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="Motor_2_Select_mode" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="motor_2_control_word" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="26">
+      <Symbol>
+        <Component Name="motor_2_target_rpm" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="27">
+      <Symbol>
+        <Component Name="motor_2_target_pos" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="28">
+      <Symbol>
+        <Component Name="motor_2_profile_speed" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="29">
+      <Constant>
+        <ConstantType>Int</ConstantType>
+        <ConstantValue>7</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="30">
+      <Symbol>
+        <Component Name="Connection_Established" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="31">
+      <Symbol>
+        <Component Name="kinco_Data_packet_DB" />
+        <Component Name="Kinco_Data_Recv" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="32">
+      <Symbol>
+        <Component Name="kinco_Data_packet_DB" />
+        <Component Name="Kinco_Data_sending_vizu" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="33">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Contact" UId="34">
+      <Negated Name="operand" />
+    </Part>
+    <Call UId="35">
+      <CallInfo Name="Kinco_CAN_Data" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="36">
+          <Component Name="Right_motor_DB" />
+        </Instance>
+        <Parameter Name="Wake_node_trig" Section="Input" Type="Bool" />
+        <Parameter Name="Op_mode_in" Section="Input" Type="Byte" />
+        <Parameter Name="Control_word" Section="Input" Type="Word" />
+        <Parameter Name="Target_RPM" Section="Input" Type="DInt" />
+        <Parameter Name="Target_pos" Section="Input" Type="DInt" />
+        <Parameter Name="profile_speed" Section="Input" Type="DInt" />
+        <Parameter Name="Node_ID" Section="Input" Type="Int" />
+        <Parameter Name="connection_established" Section="Input" Type="Bool" />
+        <Parameter Name="send_pulse" Section="Input" Type="Bool" />
+        <Parameter Name="move_pulse" Section="Input" Type="Bool" />
+        <Parameter Name="Data_Recv" Section="Input" Type="Array[0..12] of Byte" />
+        <Parameter Name="speed_real" Section="Output" Type="DInt" />
+        <Parameter Name="pos_act" Section="Output" Type="DInt" />
+        <Parameter Name="current" Section="Output" Type="Real" />
+        <Parameter Name="status_word" Section="Output" Type="Word" />
+        <Parameter Name="error_state" Section="Output" Type="Word" />
+        <Parameter Name="Op_mode" Section="Output" Type="Byte" />
+        <Parameter Name="Intial_state" Section="Output" Type="Bool" />
+        <Parameter Name="Pre_operational_state" Section="Output" Type="Bool" />
+        <Parameter Name="Operation_state" Section="Output" Type="Bool" />
+        <Parameter Name="Stop_state" Section="Output" Type="Bool" />
+        <Parameter Name="Data_to_be_sent" Section="InOut" Type="Array[0..12] of Byte" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="47">
+      <Powerrail />
+      <NameCon UId="35" Name="en" />
+      <NameCon UId="33" Name="in" />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="48">
+      <IdentCon UId="21" />
+      <NameCon UId="33" Name="operand" />
+    </Wire>
+    <Wire UId="49">
+      <NameCon UId="33" Name="out" />
+      <NameCon UId="35" Name="send_pulse" />
+    </Wire>
+    <Wire UId="50">
+      <IdentCon UId="22" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+    <Wire UId="51">
+      <NameCon UId="34" Name="out" />
+      <NameCon UId="35" Name="move_pulse" />
+    </Wire>
+    <Wire UId="52">
+      <IdentCon UId="23" />
+      <NameCon UId="35" Name="Wake_node_trig" />
+    </Wire>
+    <Wire UId="53">
+      <IdentCon UId="24" />
+      <NameCon UId="35" Name="Op_mode_in" />
+    </Wire>
+    <Wire UId="54">
+      <IdentCon UId="25" />
+      <NameCon UId="35" Name="Control_word" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="26" />
+      <NameCon UId="35" Name="Target_RPM" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="27" />
+      <NameCon UId="35" Name="Target_pos" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="28" />
+      <NameCon UId="35" Name="profile_speed" />
+    </Wire>
+    <Wire UId="58">
+      <IdentCon UId="29" />
+      <NameCon UId="35" Name="Node_ID" />
+    </Wire>
+    <Wire UId="59">
+      <IdentCon UId="30" />
+      <NameCon UId="35" Name="connection_established" />
+    </Wire>
+    <Wire UId="60">
+      <IdentCon UId="31" />
+      <NameCon UId="35" Name="Data_Recv" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="32" />
+      <NameCon UId="35" Name="Data_to_be_sent" />
+    </Wire>
+    <Wire UId="62">
+      <NameCon UId="35" Name="speed_real" />
+      <OpenCon UId="37" />
+    </Wire>
+    <Wire UId="63">
+      <NameCon UId="35" Name="pos_act" />
+      <OpenCon UId="38" />
+    </Wire>
+    <Wire UId="64">
+      <NameCon UId="35" Name="current" />
+      <OpenCon UId="39" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="35" Name="status_word" />
+      <OpenCon UId="40" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="35" Name="error_state" />
+      <OpenCon UId="41" />
+    </Wire>
+    <Wire UId="67">
+      <NameCon UId="35" Name="Op_mode" />
+      <OpenCon UId="42" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="35" Name="Intial_state" />
+      <OpenCon UId="43" />
+    </Wire>
+    <Wire UId="69">
+      <NameCon UId="35" Name="Pre_operational_state" />
+      <OpenCon UId="44" />
+    </Wire>
+    <Wire UId="70">
+      <NameCon UId="35" Name="Operation_state" />
+      <OpenCon UId="45" />
+    </Wire>
+    <Wire UId="71">
+      <NameCon UId="35" Name="Stop_state" />
+      <OpenCon UId="46" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="E" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="10" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="11" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="12" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LiteralConstant" UId="21">
+      <Constant>
+        <ConstantType>Real</ConstantType>
+        <ConstantValue>100.0</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="22">
+      <Symbol>
+        <Component Name="send_data_pulse" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>Real</ConstantType>
+        <ConstantValue>50.0</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="move_data_pulse" />
+      </Symbol>
+    </Access>
+    <Call UId="25">
+      <CallInfo Name="PULSE_TIMER" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="26">
+          <Component Name="Data_send_pulse" />
+        </Instance>
+        <Parameter Name="PULSE HZ" Section="Input" Type="Real" />
+        <Parameter Name="PULSE" Section="Output" Type="Bool" />
+      </CallInfo>
+    </Call>
+    <Call UId="27">
+      <CallInfo Name="PULSE_TIMER" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="28">
+          <Component Name="PULSE_TIMER_DB_move_pulse" />
+        </Instance>
+        <Parameter Name="PULSE HZ" Section="Input" Type="Real" />
+        <Parameter Name="PULSE" Section="Output" Type="Bool" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="29">
+      <Powerrail />
+      <NameCon UId="25" Name="en" />
+      <NameCon UId="27" Name="en" />
+    </Wire>
+    <Wire UId="30">
+      <IdentCon UId="21" />
+      <NameCon UId="25" Name="PULSE HZ" />
+    </Wire>
+    <Wire UId="31">
+      <NameCon UId="25" Name="PULSE" />
+      <IdentCon UId="22" />
+    </Wire>
+    <Wire UId="32">
+      <IdentCon UId="23" />
+      <NameCon UId="27" Name="PULSE HZ" />
+    </Wire>
+    <Wire UId="33">
+      <NameCon UId="27" Name="PULSE" />
+      <IdentCon UId="24" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="13" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="14" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="15" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="16" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="17" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="18" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text>"Main Program Sweep (Cycle)"</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.OB>
+</Document>
